@@ -12,7 +12,6 @@ from langchain.vectorstores import DocArrayInMemorySearch
 # from langchain.indexes import VectorstoreIndexCreator
 # from langchain.retrievers.document_compressors import EmbeddingsFilter
 # from langchain.retrievers import ContextualCompressionRetriever
-from IPython.display import display, Markdown
 
 openai.api_key = os.environ['OPENAI_API_KEY']
 
