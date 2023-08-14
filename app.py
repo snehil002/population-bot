@@ -35,7 +35,7 @@ def read_string_to_list(input_string):
         print("Error: Invalid JSON string")
         return None
 
-file_name = "./population_mod.csv"
+file_name = "population_mod.csv"
 
 loader = CSVLoader(file_path=file_name)
 docs = loader.load()
