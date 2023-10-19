@@ -237,7 +237,11 @@ Ask any question in the input field. Press Enter to Send. 😇 History remains o
         log_json_comp = gr.JSON([])
 
     with gr.Tab("Population Data"):
-        gr.Dataframe(value=pop_df, headers=list(pop_df.columns))
+        gr.Dataframe(
+            value=pop_df, headers=list(pop_df.columns),
+            row_count=(pop_df.shape[0], "fixed"),
+            col_count=(pop_df.shape[1], "fixed")
+        )
 
     sendbtn.click(ui_func, [msg, chatbot], [msg, chatbot], queue=False).then(
       ui_func_2, [chatbot, logs_state], [msg, chatbot, logs_state, log_json_comp]
