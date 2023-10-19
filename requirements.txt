@@ -2,4 +2,4 @@ langchain
 openai
 docarray
 tiktoken
-gradio
+pandas
