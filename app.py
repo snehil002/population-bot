@@ -206,6 +206,7 @@ def ui_func(user, history):
 
 
 def ui_func_2(history, logs_state):
+    greet, history = history[0], history[1:]
     user = history.pop()[0]
     
     try:
@@ -219,16 +220,18 @@ def ui_func_2(history, logs_state):
         print(exp)
         gr.Warning(str(exp))
         
-    return user, history, logs_state, logs_state
+    return user, [greet] + history, logs_state, logs_state
 
 with gr.Blocks() as demo:
-    gr.Markdown("""# Chat with World Population Data 2022
-Ask any question in the input field. Press Enter to Send. 😇 History remains on this page!""")
+    gr.Markdown("""# Global Population Insights Chatbot 2022""")
     
     logs_state = gr.State([])
 
     with gr.Tab("Chat Lounge"):
-        chatbot = gr.Chatbot(label="Chat History", height=400)
+        chatbot = gr.Chatbot(
+            value=[[None, "Welcome to Global Population Insights Chatbot 2022! How may I help you today?"]],
+            label="Chat History", height=400
+        )
         msg = gr.Textbox(label="User Input", placeholder="Enter your question")
         sendbtn = gr.Button(value="Ask AI", variant="primary")
         clear = gr.ClearButton([msg, chatbot])
@@ -236,12 +239,22 @@ Ask any question in the input field. Press Enter to Send. 😇 History remains o
     with gr.Tab("AI Chronicles"):
         log_json_comp = gr.JSON([])
 
-    with gr.Tab("Population Data"):
+    with gr.Tab("Population Stats"):
         gr.Dataframe(
             value=pop_df, headers=list(pop_df.columns),
             row_count=(pop_df.shape[0], "fixed"),
             col_count=(pop_df.shape[1], "fixed")
         )
+    
+    with gr.Tab("Get Started"):
+        gr.Markdown("""## Ready to get started?
+
+1. Ask any questions in the input field.
+2. Simply press 'Enter' or 'Ask AI' Button to send your message. 
+3. 'Chat Lounge': Entire Conversation History remains on this page!
+4. 'AI chronicles': Interal System Logs.
+5. 'Population Stats': World Population Data 2022. 😇
+""")
 
     sendbtn.click(ui_func, [msg, chatbot], [msg, chatbot], queue=False).then(
       ui_func_2, [chatbot, logs_state], [msg, chatbot, logs_state, log_json_comp]
