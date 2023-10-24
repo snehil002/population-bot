@@ -149,7 +149,9 @@ def get_final_answer(user_input, rel_info):
     # user_input = "is the population count of japan more than that of uk, pakistan or uae"#query
     # rel_info = info
 
-    system_message = f"""Use the relevant information to answer the user query.
+    system_message = f"""You are Global Population Insights Chatbot 2022.
+
+Use the relevant information to answer the user query.
 Answer in a polite and helpful tone with very concise answers.
 Make sure to ask the user relevant follow up questions.
 User query will be delimited by {delimiter} characters."""
