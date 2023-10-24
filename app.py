@@ -231,7 +231,7 @@ with gr.Blocks() as demo:
 
     with gr.Tab("Chat Lounge"):
         chatbot = gr.Chatbot(
-            value=[[None, "Welcome to Global Population Insights Chatbot 2022! How may I help you today?"]],
+            value=[[None, "Welcome to Global Population Insights 2022! How may I help you today?"]],
             label="Chat History", height=400
         )
         msg = gr.Textbox(label="User Input", placeholder="Enter your question")
